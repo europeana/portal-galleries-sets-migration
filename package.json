@@ -1,0 +1,41 @@
+{
+  "name": "@europeana/portal-galleries-contentful-migration",
+  "version": "0.1.0",
+  "description": "Node.js scripts to migrate Europeana galleries from Contentful to the User Sets API.",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint --ext .js --ignore-path .gitignore .",
+    "lint:fix": "npm run lint -- --fix",
+    "gallery": "node index.js gallery",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": "^16",
+    "npm": "^8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/europeana/portal-galleries-sets-migration.git"
+  },
+  "keywords": [
+    "code4lib"
+  ],
+  "contributors": [
+    "Richard Doe <richard.doe@europeana.eu>"
+  ],
+  "private": true,
+  "license": "EUPL-1.2",
+  "bugs": {
+    "url": "https://github.com/europeana/portal-galleries-sets-migration/issues"
+  },
+  "homepage": "https://github.com/europeana/portal-galleries-sets-migration#readme",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "contentful": "^9.1.32",
+    "dotenv": "^16.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.20.0"
+  },
+  "type": "module"
+}
