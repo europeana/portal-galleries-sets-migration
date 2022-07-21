@@ -62,7 +62,6 @@ module.exports = {
     'semi-spacing': ['error'],
     'semi-style': ['error', 'last'],
     semi: ['error', 'always'],
-    'sort-keys': 'error',
     'space-before-blocks': [
       'error',
       'always'

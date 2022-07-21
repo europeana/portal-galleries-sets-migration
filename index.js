@@ -1,16 +1,33 @@
-import listModule from './src/list.js';
+import auth from './src/auth.js';
+import clean from './src/clean.js';
+import fetch from './src/fetch.js';
+import migrate from './src/migrate.js';
 
-const gallery = {
-  list: listModule
+const cli = {
+  auth,
+  clean,
+  fetch,
+  migrate
 };
 
 const act = async(scope, action, args) => {
-  if (scope === 'gallery' && gallery[action]) {
-    return await gallery[action].cli(args);
+  if (scope === 'gallery' && cli[action]) {
+    try {
+      const output = await cli[action](args);
+      if (output) {
+        console.log(JSON.stringify(output, null, 2));
+      }
+    } catch (e) {
+      if (e.response) {
+        console.error(e.response.status, e.response.data);
+      } else {
+        console.error(e.message);
+      }
+    }
+  } else {
+    console.error(`Unknown action: ${scope} ${action}`);
+    process.exit(1);
   }
-
-  console.log(`Unknown action: ${scope} ${action}`);
-  process.exit(1);
 };
 
 const scope = process.argv[2];
