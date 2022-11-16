@@ -20,6 +20,7 @@ export default async() => {
         response.items.map((item) => ({
           description: item.fields.description,
           identifier: item.fields.identifier['en-GB'],
+          datePublished: item.fields.datePublished?.['en-GB'],
           items: item.fields.hasPart['en-GB'].map((part) => part.fields.identifier['en-GB']),
           name: item.fields.name
         }))

@@ -13,9 +13,13 @@ const setLangMap = (contentfulLangMap) => {
   return langMap;
 };
 
+const setVisibility = (datePublished) => {
+  return (datePublished && (new Date(datePublished) <= new Date())) ? 'public' : 'private';
+};
+
 const setData = (data) => ({
   type: 'Collection',
-  visibility: 'public',
+  visibility: setVisibility(data.datePublished),
   title: setLangMap(data.name),
   description: setLangMap(data.description),
   items: data.items.map((id) => `http://data.europeana.eu/item${id}`)
@@ -40,7 +44,7 @@ export default async(data) => {
     }
   });
 
-  console.log(`create ${createResponse.data.id}`);
+  console.log(`create ${createResponse.data.id} [${createResponse.data.visibility}]`);
 
   return createResponse.data;
 };

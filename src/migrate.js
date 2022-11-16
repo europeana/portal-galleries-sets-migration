@@ -13,6 +13,8 @@ export default async() => {
     const createResponse = await create(gallery);
     const log = `${gallery.identifier}=${createResponse.id}`;
     await fs.appendFileSync(logFile, `${log}\n`);
-    await publish(createResponse.id);
+    if (createResponse.visibility === 'public') {
+      await publish(createResponse.id);
+    }
   }
 };
