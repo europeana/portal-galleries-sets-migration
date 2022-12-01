@@ -6,8 +6,6 @@ export default async function*() {
   const limit = 30;
   let noMoreEntries = false;
 
-  console.info(`Slug\tPublished items\tTotal items\tAction`);
-
   while (!noMoreEntries) {
     const response = await contentfulPreviewClient.getEntries({
       'content_type': 'imageGallery',
@@ -48,9 +46,9 @@ export default async function*() {
         }
 
         if (foundItemIdentifiers.length === 0) {
-          console.warn(`${slug}\t${foundItemIdentifiers.length}\t${itemIdentifiers.length}\tSKIPPING`);
+          console.warn(`${slug}: ${foundItemIdentifiers.length}/${itemIdentifiers.length}; SKIPPING`);
         } else {
-          console.info(`${slug}\t${foundItemIdentifiers.length}\t${itemIdentifiers.length}\tMIGRATING`);
+          console.info(`${slug}: ${foundItemIdentifiers.length}/${itemIdentifiers.length}; MIGRATING`);
           yield {
             description: imageGallery.fields.description,
             identifier: slug,
