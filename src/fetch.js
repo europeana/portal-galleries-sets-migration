@@ -45,7 +45,7 @@ export default async function*() {
           requestedItemIdentifierCount = requestedItemIdentifierCount + perPage;
         }
 
-        if (foundItemIdentifiers.length === 0) {
+        if (foundItemIdentifiers.length < 8) {
           console.warn(`${slug}: ${foundItemIdentifiers.length}/${itemIdentifiers.length}; SKIPPING`);
         } else {
           console.info(`${slug}: ${foundItemIdentifiers.length}/${itemIdentifiers.length}; MIGRATING`);
