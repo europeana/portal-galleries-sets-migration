@@ -40,7 +40,7 @@ export default async(data) => {
       'Authorization': `Bearer ${accessToken}`
     },
     params: {
-      wskey: process.env.EUROPEANA_SET_API_KEY
+      wskey: process.env.EUROPEANA_API_KEY
     }
   });
 

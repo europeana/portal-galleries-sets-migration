@@ -7,14 +7,19 @@ import publish from './publish.js';
 const logFile = path.join('.', 'migrate.log');
 
 export default async() => {
-  const galleries = await fetch();
+  const fetchGalleries = fetch();
 
-  for (const gallery of galleries) {
-    const createResponse = await create(gallery);
-    const log = `${gallery.identifier}=${createResponse.id}`;
-    await fs.appendFileSync(logFile, `${log}\n`);
-    if (createResponse.visibility === 'public') {
-      await publish(createResponse.id);
+  let gallery = { done: false };
+  while (!gallery.done) {
+    gallery = await fetchGalleries.next();
+
+    if (gallery.value) {
+      const createResponse = await create(gallery.value);
+      const log = `${gallery.value.identifier}=${createResponse.id}`;
+      await fs.appendFileSync(logFile, `${log}\n`);
+      if (createResponse.visibility === 'public') {
+        await publish(createResponse.id);
+      }
     }
   }
 };
