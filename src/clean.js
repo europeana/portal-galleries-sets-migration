@@ -36,7 +36,7 @@ export default async() => {
 
       if (!notFound) {
         await deleteSet(uri);
-      }          
+      }
     }
   }
 

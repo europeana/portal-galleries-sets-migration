@@ -26,7 +26,7 @@ export default async function*() {
 
         while (itemIdentifiers.length > requestedItemIdentifierCount) {
           const pageOfItemIdentifiers = itemIdentifiers.slice(requestedItemIdentifierCount, perPage);
-          const query = `europeana_id:("${itemIdentifiers.join('" OR "')}")`;
+          const query = `europeana_id:("${pageOfItemIdentifiers.join('" OR "')}")`;
 
           const itemResponse = await axios({
             method: 'get',
@@ -63,4 +63,4 @@ export default async function*() {
       noMoreEntries = true;
     }
   }
-};
+}
