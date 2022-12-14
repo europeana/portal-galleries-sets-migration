@@ -50,6 +50,7 @@ export default async function*() {
         } else {
           console.info(`${slug}: ${foundItemIdentifiers.length}/${itemIdentifiers.length}; MIGRATING`);
           yield {
+            revision: imageGallery.sys.revision,
             description: imageGallery.fields.description,
             identifier: slug,
             datePublished: imageGallery.fields.datePublished?.['en-GB'],

@@ -13,13 +13,19 @@ const setLangMap = (contentfulLangMap) => {
   return langMap;
 };
 
-const setVisibility = (datePublished) => {
-  return (datePublished && (new Date(datePublished) <= new Date())) ? 'public' : 'private';
+const setVisibility = (data) => {
+  if (data.revision === 0) {
+    return 'private';
+  } else if (data.datePublished && (new Date(data.datePublished) <= new Date())) {
+    return 'public';
+  } else {
+    return 'private';
+  }
 };
 
 const setData = (data) => ({
   type: 'Collection',
-  visibility: setVisibility(data.datePublished),
+  visibility: setVisibility(data),
   title: setLangMap(data.name),
   description: setLangMap(data.description),
   items: data.items.map((id) => `http://data.europeana.eu/item${id}`)
